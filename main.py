@@ -2,13 +2,14 @@ from aiogram import F
 from aiogram.filters import Command, StateFilter
 from aiogram import Bot, Dispatcher
 
+from config import TOKEN
 from handlers.reg import cmd_reg, email, password
 from handlers.profile import profile_cmd, email_change, new_email
 
 from FSM.regFSM import Regestration
 from FSM.profileFSM import Profile
 
-bot = Bot(token='TOKEN')
+bot = Bot(token=TOKEN)
 dp = Dispatcher()
 
 dp.message.register(cmd_reg, Command("start"))
