@@ -11,7 +11,7 @@ from FSM.profileFSM import Profile
 
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
-
+    
 dp.message.register(cmd_reg, Command("start"))
 dp.message.register(profile_cmd, Command("profile"))
 dp.message.register(email_change, Command("email"))

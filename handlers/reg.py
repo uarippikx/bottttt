@@ -26,7 +26,7 @@ async def password(message:Message, state:FSMContext):
     user = await state.get_data()
     async with manager:
         await manager.insert_data_with_update(
-            table_name="usersdata",
+            table_name="userssdata",
             records_data={
                 "user_id":message.from_user.id,
                 "username":message.from_user.username,

@@ -1,5 +1,4 @@
 from asyncpg_lite import DatabaseManager
+from config import DB_CONFIG
 
-pg_manager = DatabaseManager(
-    db_url="postgresql://postgres:SQLmmmuuu123@localhost:5432/postgres",
-    deletion_password=228)
+pg_manager = DatabaseManager(db_url=DB_CONFIG,deletion_password=000)
