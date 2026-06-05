@@ -9,7 +9,7 @@ async def profile_cmd(message: types.Message, state: FSMContext):
     user_id = message.from_user.id
     async with manager:
         user = await manager.select_data(
-            table_name="usersdata",
+            table_name="userssdata",
             where_dict={
                 "user_id" : user_id
             },
@@ -40,7 +40,7 @@ async def new_email(message:types.Message, state:FSMContext):
         return
     async with manager:
         manager.update_data(
-            table_name="usersdata",
+            table_name="userssdata",
             where_dict={
                 "user_id" : message.from_user.id
             },
