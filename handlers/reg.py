@@ -7,7 +7,7 @@ from aiogram import types
 
 def is_valid_email(email:str):
     dog = email.find("@")
-    return (dog != -1 and email.count("@") == 1) and ("a" in email [dog+1:])
+    return (dog != -1 and email.count("@") == 1) 
 
 async def cmd_reg(message:types.Message, state: FSMContext): #асинхронная функция запускается если срабатывает верхнее условие
     await state.set_state(Regestration.waiting_email)

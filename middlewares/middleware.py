@@ -25,7 +25,7 @@ class Registration_MW(BaseMiddleware):
         current_state=None
         if state:
             current_state= await state.get_state()
-        allowed=['/reg','/help']
+        allowed=['/start','/help','/email']
         if isinstance(event,Message):
             if any(text.startswith(cmd) for cmd in allowed):
                 return await handler(event,data)
