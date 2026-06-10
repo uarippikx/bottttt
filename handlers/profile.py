@@ -39,7 +39,7 @@ async def new_email(message:types.Message, state:FSMContext):
         await message.answer("Некорректная почта")
         return
     async with manager:
-        manager.update_data(
+        await manager.update_data(
             table_name="userssdata",
             where_dict={
                 "user_id" : message.from_user.id
