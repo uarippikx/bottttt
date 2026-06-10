@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 import os
 
-load_dotenv(dotenv_path='.env.gitignore')
+load_dotenv(dotenv_path='bottttt\.env.gitignore')
 
 TOKEN=os.getenv("TOKEN")
 
