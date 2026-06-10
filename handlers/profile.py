@@ -34,20 +34,20 @@ async def email_change(message: types.Message, state: FSMContext):
     await message.answer("Введи новую почту:")
     await state.set_state(Profile.changing_email)
 
-async def new_email(message:types.Message, state:FSMContext):
+async def new_email(message: types.Message, state: FSMContext):
+    print(f"Меняем почту для {message.from_user.id} на {message.text}")
     if not is_valid_email(message.text):
         await message.answer("Некорректная почта")
         return
+    
     async with manager:
-        await manager.update_data(  # добавь await
+        await manager.update_data(
             table_name="userssdata",
-            where_dict={
-                "user_id": message.from_user.id
-            },
-            update_dict={
-                "email": message.text
-            }
+            where_dict={"user_id": message.from_user.id},
+            update_dict={"email": message.text}
         )
+    
+
             
     await message.answer("Вы поменяли почту!")
     await state.clear()
