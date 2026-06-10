@@ -25,7 +25,7 @@ async def profile_cmd(message: types.Message, state: FSMContext):
         f"Почта {user.get('email')}"
     )
 
-    button = KeyboardButton(text="/email")
+    button = [[KeyboardButton(text="/email")]]
     kb = ReplyKeyboardMarkup(keyboard=button, resize_keyboard=True)
 
     await message.answer(text, parse_mode="HTML", reply_markup=kb)

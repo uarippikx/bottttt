@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
+import traceback 
 
 from Connections.postgresql import pg_manager as manager
 
@@ -46,7 +47,9 @@ async def get_profile(user_id: int):
         async with manager:
             user = await manager.select_data(
                 table_name="userssdata",
-                where_dict={"user_id": user_id},
+                where_dict={
+                    "user_id" : user_id
+                },
                 one_dict=True
             )
         
@@ -68,6 +71,7 @@ async def get_profile(user_id: int):
         raise
     except Exception as e:
         print(f"Error fetching profile: {e}")
+        traceback.print_exc()
         raise HTTPException(
             status_code=500,
             detail="Internal server error"
