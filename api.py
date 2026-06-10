@@ -10,9 +10,7 @@ app = FastAPI(title="Profile API", version="1.0.0")
 # CORS middleware - разрешить запросы с GitHub Pages и других источников
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://uarippikx.github.io",
-     "http://localhost:3000",  # Для локальной разработки
-    "http://localhost:8000"], # Явно указываем ваш фронтенд
+    allow_origins=["https://uarippikx.github.io"], # Явно указываем ваш фронтенд
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"], # Позволит фронтенду передавать заголовок ngrok-skip-browser-warning
