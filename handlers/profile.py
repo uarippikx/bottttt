@@ -9,7 +9,7 @@ async def profile_cmd(message: types.Message, state: FSMContext):
     user_id = message.from_user.id
     async with manager:
         user = await manager.select_data(
-            table_name="usersdata",
+            table_name="userssdata",
             where_dict={
                 "user_id" : user_id
             },
@@ -25,7 +25,7 @@ async def profile_cmd(message: types.Message, state: FSMContext):
         f"Почта {user.get('email')}"
     )
 
-    button = KeyboardButton(text="/email")
+    button = [[KeyboardButton(text="/email")]]
     kb = ReplyKeyboardMarkup(keyboard=button, resize_keyboard=True)
 
     await message.answer(text, parse_mode="HTML", reply_markup=kb)
@@ -34,20 +34,21 @@ async def email_change(message: types.Message, state: FSMContext):
     await message.answer("Введи новую почту:")
     await state.set_state(Profile.changing_email)
 
-async def new_email(message:types.Message, state:FSMContext):
+async def new_email(message: types.Message, state: FSMContext):
+    print(f"Меняем почту для {message.from_user.id} на {message.text}")
     if not is_valid_email(message.text):
         await message.answer("Некорректная почта")
         return
+    
     async with manager:
-        manager.update_data(
-            table_name="usersdata",
-            where_dict={
-                "user_id" : message.from_user.id
-            },
-            update_dict={
-                "email" : message.text
-            }
+        await manager.update_data(
+            table_name="userssdata",
+            where_dict={"user_id": message.from_user.id},
+            update_dict={"email": message.text}
         )
+    
+
+            
     await message.answer("Вы поменяли почту!")
     await state.clear()
     
